@@ -15,7 +15,7 @@ class AssetV3 extends \yii\web\AssetBundle
 
     public $depends = [
         'yii\web\JqueryAsset',
-        'mervick\emojionearea\EmojiOneAsset',
+        'mervick\emojionearea\EmojiOneV3Asset',
     ];
 
     /**

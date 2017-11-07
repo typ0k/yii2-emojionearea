@@ -24,7 +24,9 @@ class Widget extends InputWidget
      */
     public $pluginOptions;
 
+    public $emojioneVersion='2.2.7';
 
+    public $localAsset=false;
     /**
      * Initialize the widget
      */
@@ -55,11 +57,15 @@ class Widget extends InputWidget
     protected function registerAssets()
     {
         $view = $this->getView();
-        Asset::register($view);
+        if (version_compare('2.7.1', $this->emojioneVersion, '<=')){
+            Asset::register($view);
+        }
+        
 
         $pluginOptions = !empty($this->pluginOptions) ? Json::encode($this->pluginOptions) : '';
 
         $js = <<<JS
+    window.emojioneVersion = "{$this->emojioneVersion}";
     window.emojioneArea_{$this->options['id']} = jQuery("#{$this->options['id']}").emojioneArea($pluginOptions);
 JS;
         Yii::$app->getView()->registerJs($js);

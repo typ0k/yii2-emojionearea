@@ -59,6 +59,8 @@ class Widget extends InputWidget
         $view = $this->getView();
         if (version_compare('2.7.1', $this->emojioneVersion, '<=')){
             Asset::register($view);
+        } else {
+            AssetV3::register($view);
         }
         
 
